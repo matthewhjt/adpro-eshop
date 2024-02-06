@@ -44,7 +44,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findProductById(UUID id) {
+    public Product findProductById(String id) {
         Product product = productRepository.getProductById(id);
         if (product == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
