@@ -41,9 +41,6 @@ public class ProductController {
     @GetMapping("/edit/{productId}")
     public String editProductPage(@PathVariable UUID productId, Model model) {
         Product product = service.findProductById(productId);
-        if (product == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
-        }
         model.addAttribute("product", product);
         return "editProduct";
     }
@@ -51,6 +48,13 @@ public class ProductController {
     @PostMapping("/edit/{productId}")
     public String editProduct(@ModelAttribute Product product, Model model) {
         service.editProduct(product);
+        return "redirect:/product/list";
+    }
+
+    @PostMapping("/delete/{productId}")
+    public String deleteProduct(@PathVariable UUID productId, Model model) {
+        Product product = service.findProductById(productId);
+        service.deleteProduct(product);
         return "redirect:/product/list";
     }
 }

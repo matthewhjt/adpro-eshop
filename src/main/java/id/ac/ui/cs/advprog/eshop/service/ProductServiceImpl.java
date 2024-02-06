@@ -30,6 +30,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Product deleteProduct(Product product){
+        productRepository.delete(product);
+        return product;
+    }
+
+    @Override
     public List<Product> findAll() {
         Iterator<Product> productIterator = productRepository.findAll();
         List<Product> allProduct = new ArrayList<>();
@@ -39,6 +45,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findProductById(UUID id) {
-        return productRepository.getProductById(id);
+        Product product = productRepository.getProductById(id);
+        if (product == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
+        }
+        return product;
     }
 }
