@@ -3,9 +3,11 @@ package id.ac.ui.cs.advprog.eshop.controller;
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.UUID;
@@ -39,6 +41,9 @@ public class ProductController {
     @GetMapping("/edit/{productId}")
     public String editProductPage(@PathVariable UUID productId, Model model) {
         Product product = service.findProductById(productId);
+        if (product == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
+        }
         model.addAttribute("product", product);
         return "editProduct";
     }
