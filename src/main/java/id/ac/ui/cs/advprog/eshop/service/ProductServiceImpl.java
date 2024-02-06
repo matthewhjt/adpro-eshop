@@ -25,11 +25,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product editProduct(Product product){
-        int index = productRepository.getProductIndex(product);
-        if (index == -1){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
-        }
-        productRepository.edit(product, index);
+        productRepository.edit(product);
         return product;
     }
 
@@ -44,10 +40,5 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product findProductById(UUID id) {
         return productRepository.getProductById(id);
-    }
-
-    @Override
-    public int getProductIndex(Product product){
-        return productRepository.getProductIndex(product);
     }
 }

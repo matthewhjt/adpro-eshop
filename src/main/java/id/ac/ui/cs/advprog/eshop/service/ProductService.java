@@ -8,6 +8,5 @@ public interface ProductService {
     public Product createProduct(Product product);
     public List<Product> findAll();
     public Product findProductById(UUID id);
-    public int getProductIndex(Product product);
     public Product editProduct(Product product);
 }

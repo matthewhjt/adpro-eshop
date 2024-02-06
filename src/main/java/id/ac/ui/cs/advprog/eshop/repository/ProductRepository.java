@@ -17,9 +17,11 @@ public class ProductRepository {
         return product;
     }
 
-    public Product edit(Product product, int index){
-        productData.set(index, product);
-        return product;
+    public Product edit(Product newProduct){
+        Product oldProduct = getProductById(newProduct.getProductId());
+        int index = productData.indexOf(oldProduct);
+        productData.set(index, newProduct);
+        return newProduct;
     }
 
     public Iterator<Product> findAll() {
@@ -33,14 +35,5 @@ public class ProductRepository {
             }
         }
         return null;
-    }
-
-    public int getProductIndex(Product product){
-        for (int i = 0; i < productData.size(); i++){
-            if (productData.get(i).getProductId().equals(product.getProductId())){
-                return i;
-            }
-        }
-        return -1;
     }
 }
