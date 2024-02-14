@@ -44,7 +44,7 @@ class ProductControllerTest{
     public void testGetProductListPage() throws Exception {
         List<Product> allProducts = productService.findAll();
         mockMvc.perform(get("/product/list")).andExpect(status().isOk())
-                .andExpect(view().name("productList"))
+                .andExpect(view().name("ProductList"))
                 .andExpect(model().attribute("products", allProducts));
     }
 
@@ -52,7 +52,7 @@ class ProductControllerTest{
     public void testGetCreateProductpage() throws Exception {
         mockMvc.perform(get("/product/create"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("createProduct"))
+                .andExpect(view().name("CreateProduct"))
                 .andExpect(model().attributeExists("product"));
     }
 
@@ -70,7 +70,7 @@ class ProductControllerTest{
         Product product = new Product();
         mockMvc.perform(get("/product/edit/{id}", product.getProductId()))
                 .andExpect(status().isOk())
-                .andExpect(view().name("editProduct"));
+                .andExpect(view().name("EditProduct"));
     }
 
     @Test
