@@ -41,7 +41,7 @@ class ProductControllerTest{
     }
 
     @Test
-    public void testGetProductListPage() throws Exception {
+    void testGetProductListPage() throws Exception {
         List<Product> allProducts = productService.findAll();
         mockMvc.perform(get("/product/list")).andExpect(status().isOk())
                 .andExpect(view().name("ProductList"))
@@ -49,7 +49,7 @@ class ProductControllerTest{
     }
 
     @Test
-    public void testGetCreateProductpage() throws Exception {
+    void testGetCreateProductpage() throws Exception {
         mockMvc.perform(get("/product/create"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("CreateProduct"))
@@ -57,7 +57,7 @@ class ProductControllerTest{
     }
 
     @Test
-    public void testPostCreateProduct() throws Exception {
+    void testPostCreateProduct() throws Exception {
         Product product = new Product();
         mockMvc.perform(post("/product/create")
                         .flashAttr("product", product))
@@ -66,7 +66,7 @@ class ProductControllerTest{
     }
 
     @Test
-    public void testGetEditProductPage() throws Exception {
+    void testGetEditProductPage() throws Exception {
         Product product = new Product();
         mockMvc.perform(get("/product/edit/{id}", product.getProductId()))
                 .andExpect(status().isOk())
@@ -74,7 +74,7 @@ class ProductControllerTest{
     }
 
     @Test
-    public void testPostEditProduct() throws Exception {
+    void testPostEditProduct() throws Exception {
         Product product = new Product();
         mockMvc.perform(post("/product/edit/{id}", product.getProductId())
                         .flashAttr("product", product))
@@ -83,7 +83,7 @@ class ProductControllerTest{
     }
 
     @Test
-    public void testPostDeleteProduct() throws Exception {
+    void testPostDeleteProduct() throws Exception {
         Product product = new Product();
         mockMvc.perform(post("/product/delete/{id}", product.getProductId())
                         .flashAttr("product", product))
