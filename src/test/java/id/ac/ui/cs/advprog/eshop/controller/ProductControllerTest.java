@@ -68,6 +68,7 @@ class ProductControllerTest{
     @Test
     void testGetEditProductPage() throws Exception {
         Product product = new Product();
+        product.setProductId("5ff2d744-04c8-496b-a752-232d6df01850");
         mockMvc.perform(get("/product/edit/{id}", product.getProductId()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("EditProduct"));
@@ -76,6 +77,7 @@ class ProductControllerTest{
     @Test
     void testPostEditProduct() throws Exception {
         Product product = new Product();
+        product.setProductId("5ff2d744-04c8-496b-a752-232d6df01850");
         mockMvc.perform(post("/product/edit/{id}", product.getProductId())
                         .flashAttr("product", product))
                 .andExpect(status().is3xxRedirection())
@@ -85,6 +87,7 @@ class ProductControllerTest{
     @Test
     void testPostDeleteProduct() throws Exception {
         Product product = new Product();
+        product.setProductId("5ff2d744-04c8-496b-a752-232d6df01850");
         mockMvc.perform(post("/product/delete/{id}", product.getProductId())
                         .flashAttr("product", product))
                 .andExpect(status().is3xxRedirection())
